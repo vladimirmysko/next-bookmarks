@@ -1,9 +1,19 @@
+import { redirect } from 'next/navigation';
+import { getSession } from '@/lib/session';
+import { getCurrentLocale } from '@/locales/server';
+
 import { ArrowUpRightIcon } from '@heroicons/react/16/solid';
 import { DecorativeBorders } from '@/components/DecorativeBorders';
 import { Logo } from '@/components/Logo';
 import { Link } from '@/components/Link';
 
-export default function HomePage() {
+export default async function HomePage() {
+  const session = await getSession();
+
+  if (session) {
+    return redirect(`/${await getCurrentLocale()}/${session.username}`);
+  }
+
   return (
     <div className="flex min-h-svh flex-col items-center justify-center sm:bg-neutral-50">
       <main className="relative flex w-full max-w-xl flex-col items-stretch gap-8 bg-white px-4 py-6 sm:px-6">

@@ -8,18 +8,18 @@ datasource db {
 }
 
 model User {
-  id           String   @id @default(uuid())
-  username     String   @unique
-  passwordHash String   @map("password_hash")
-  createdAt    DateTime @default(now()) @map("created_at")
-  updatedAt    DateTime @updatedAt @map("updated_at")
-  groups       Group[]
+  id             String   @id @default(uuid())
+  username       String   @unique
+  hashedPassword String   @map("hashed_password")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+  groups         Group[]
 
   @@map("users")
 }
 
 model Group {
-  id        Int        @id @default(autoincrement())
+  id        String     @id @default(cuid())
   name      String
   createdAt DateTime   @default(now()) @map("created_at")
   updatedAt DateTime   @updatedAt @map("updated_at")
@@ -38,8 +38,8 @@ model Bookmark {
   favicon   String?
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
-  group     Group?   @relation(fields: [groupId], references: [id])
-  groupId   Int?     @map("group_id")
+  group     Group    @relation(fields: [groupId], references: [id])
+  groupId   String   @map("group_id")
 
   @@unique([url, groupId])
   @@map("bookmarks")

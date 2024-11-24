@@ -4,6 +4,7 @@ import { getI18n } from '@/locales/server';
 import { cn } from '@/utils/cn';
 
 import { I18nProviderClient } from '@/locales/client';
+import { NuqsAdapter } from 'nuqs/adapters/next';
 
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
@@ -41,7 +42,9 @@ export default async function LocaleLayout({
         )}
         style={{ textRendering: 'optimizeLegibility' }}
       >
-        <I18nProviderClient locale={locale}>{children}</I18nProviderClient>
+        <I18nProviderClient locale={locale}>
+          <NuqsAdapter>{children}</NuqsAdapter>
+        </I18nProviderClient>
       </body>
     </html>
   );
