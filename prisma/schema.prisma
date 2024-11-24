@@ -24,7 +24,7 @@ model Group {
   createdAt DateTime   @default(now()) @map("created_at")
   updatedAt DateTime   @updatedAt @map("updated_at")
   bookmarks Bookmark[]
-  user      User       @relation(fields: [userId], references: [id])
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String     @map("user_id")
 
   @@unique([name, userId])
@@ -38,7 +38,7 @@ model Bookmark {
   favicon   String?
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
-  group     Group    @relation(fields: [groupId], references: [id])
+  group     Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)
   groupId   String   @map("group_id")
 
   @@unique([url, groupId])
