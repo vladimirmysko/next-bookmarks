@@ -9,8 +9,8 @@ import { Button } from '@/components/Button';
 
 export default function SignInPage() {
   return (
-    <div className="relative flex min-h-svh flex-col items-center justify-center bg-neutral-50">
-      <Link href="/" className="absolute left-6 top-6">
+    <div className="relative flex min-h-svh flex-col items-center justify-center sm:bg-neutral-50">
+      <Link href="/" className="absolute left-4 top-6 sm:left-6">
         <Logo />
       </Link>
 
