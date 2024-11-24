@@ -1,7 +1,52 @@
+import { DecorativeBorders } from '@/components/DecorativeBorders';
+import { Logo } from '@/components/Logo';
+import { Link } from '@/components/Link';
+
 export default function HomePage() {
   return (
-    <div>
-      <h1>Sign in</h1>
+    <div className="flex min-h-svh flex-col items-center justify-center bg-neutral-50">
+      <main className="relative flex w-full max-w-xl flex-col items-stretch gap-8 bg-white p-4 sm:p-6">
+        <DecorativeBorders />
+
+        <nav className="flex items-baseline justify-between">
+          <Logo />
+          <Link href="/sign-in">Sign in</Link>
+        </nav>
+
+        <section className="flex flex-col items-stretch gap-2">
+          <h1 className="text-sm/6 font-semibold text-neutral-950">Next Bookmarks</h1>
+          <p className="text-sm/6 text-neutral-500">
+            A web app for storing and organizing your favorite websites and color palettes. Designed
+            for speed, simplicity, and personal use.
+          </p>
+        </section>
+
+        <section className="flex flex-col items-stretch gap-2">
+          <h2 className="text-sm/6 font-semibold text-neutral-950">About</h2>
+          <p className="text-sm/6 text-neutral-500">
+            Built with precision and care, Next Bookmarks features a clean interface focused on
+            usability. Automatically detects the type of input, enhancing your bookmarks with
+            metadata. Fully keyboard-friendly, lightweight, and fast-loading. No distractions.
+          </p>
+        </section>
+
+        <section className="flex flex-col items-stretch gap-2">
+          <h2 className="text-sm/6 font-semibold text-neutral-950">Join</h2>
+          <p className="text-sm/6 text-neutral-500">
+            Next Bookmarks is open and free for use. However, no feature updates or guaranteed
+            support will be provided. The project is lightweight by design, with a minimalistic
+            codebase for efficiency.
+          </p>
+        </section>
+
+        <section className="flex flex-col items-stretch gap-2">
+          <h2 className="text-sm/6 font-semibold text-neutral-950">Credits</h2>
+          <p className="text-sm/6 text-neutral-500">
+            Thank you to the creators who inspired this project. Explore the code and more on
+            GitHub. Designed to make organizing bookmarks effortless.
+          </p>
+        </section>
+      </main>
     </div>
   );
 }
