@@ -12,6 +12,7 @@ import { Label } from '@/components/Label';
 import { InputGroup, Input } from '@/components/Input';
 import { Button } from '@/components/Button';
 import { Error } from '@/components/Error';
+import { Spinner } from '@/components/Spinner';
 
 import { RegisterActionState, registerAction } from './actions';
 
@@ -80,7 +81,14 @@ export function RegisterForm({
       </div>
 
       <Button type="submit" disabled={isPending}>
-        {isPending ? 'Registering...' : 'Register'}
+        {isPending ? (
+          <>
+            <Spinner />
+            <span>Registering...</span>
+          </>
+        ) : (
+          'Register'
+        )}
       </Button>
     </form>
   );

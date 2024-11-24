@@ -23,6 +23,15 @@ export default {
       fontFamily: {
         sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
       },
+      animation: {
+        'spinner-leaf-fade': 'spinner-leaf-fade 800ms linear infinite',
+      },
+      keyframes: {
+        'spinner-leaf-fade': {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0.25' },
+        },
+      },
     },
   },
   plugins: [forms],

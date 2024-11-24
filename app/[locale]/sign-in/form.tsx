@@ -12,6 +12,7 @@ import { Label } from '@/components/Label';
 import { InputGroup, Input } from '@/components/Input';
 import { Button } from '@/components/Button';
 import { Error } from '@/components/Error';
+import { Spinner } from '@/components/Spinner';
 
 import { SignInActionState, signInAction } from './actions';
 
@@ -72,7 +73,14 @@ export function SignInForm({
       </div>
 
       <Button type="submit" disabled={isPending}>
-        {isPending ? 'Signing in...' : 'Sign in'}
+        {isPending ? (
+          <>
+            <Spinner />
+            <span>Signing in...</span>
+          </>
+        ) : (
+          'Sign in'
+        )}
       </Button>
     </form>
   );
