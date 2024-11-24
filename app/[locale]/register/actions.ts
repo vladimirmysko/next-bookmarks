@@ -48,12 +48,22 @@ export async function registerAction(prevState: RegisterActionState, formData: F
 
   const hashedPassword = await hashPassword(password);
 
-  const createdUser = await prisma.user.create({ data: { username, hashedPassword } });
-  const createdGroup = await prisma.group.create({
-    data: { name: 'Bookmarks', userId: createdUser.id },
+  const createdUser = await prisma.user.create({
+    data: {
+      username,
+      hashedPassword,
+      groups: {
+        create: {
+          name: 'Bookmarks',
+        },
+      },
+    },
+    include: {
+      groups: true,
+    },
   });
 
   await createSession({ id: createdUser.id, username: createdUser.username });
 
-  redirect(`/${await getCurrentLocale()}/${createdUser.username}/${createdGroup.id}`);
+  redirect(`/${await getCurrentLocale()}/${createdUser.username}/${createdUser.groups[0].id}`);
 }
