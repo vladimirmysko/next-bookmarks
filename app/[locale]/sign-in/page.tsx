@@ -22,7 +22,7 @@ export default function SignInPage() {
 
         <div className="flex flex-col items-stretch gap-1">
           <h1 className="text-xl font-semibold text-neutral-950">Sign in</h1>
-          <p className="text-sm text-neutral-500">
+          <p className="text-sm text-neutral-500 [&_a]:inline-block">
             Don't have an account? <Link href="/register">Register.</Link>
           </p>
         </div>

@@ -1,3 +1,4 @@
+import { ArrowUpRightIcon } from '@heroicons/react/16/solid';
 import { DecorativeBorders } from '@/components/DecorativeBorders';
 import { Logo } from '@/components/Logo';
 import { Link } from '@/components/Link';
@@ -41,10 +42,23 @@ export default function HomePage() {
 
         <section className="flex flex-col items-stretch gap-2">
           <h2 className="text-sm/6 font-semibold text-neutral-950">Credits</h2>
-          <p className="text-sm/6 text-neutral-500">
-            Thank you to the creators who inspired this project. Explore the code and more on
-            GitHub. Designed to make organizing bookmarks effortless.
-          </p>
+          <ul className="flex flex-col items-start [&_a]:text-sm/6">
+            <li className="flex flex-col items-start">
+              <Link href="https://rauno.me/" target="_blank">
+                Rauno Freiberg <ArrowUpRightIcon />
+              </Link>
+            </li>
+            <li className="flex flex-col items-start">
+              <Link href="https://bmrks.com/" target="_blank">
+                (Basic) Bookmarks <ArrowUpRightIcon />
+              </Link>
+            </li>
+            <li className="flex flex-col items-start">
+              <Link href="https://github.com/vladimirmysko/next-bookmarks" target="_blank">
+                GitHub repository <ArrowUpRightIcon />
+              </Link>
+            </li>
+          </ul>
         </section>
       </main>
     </div>

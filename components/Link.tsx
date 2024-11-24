@@ -8,8 +8,9 @@ export function Link({ className, ...props }: LinkProps & React.ComponentPropsWi
     <Headless.DataInteractive>
       <NextLink
         className={cn(
-          'text-sm font-medium text-neutral-950 hover:underline',
+          'flex items-center gap-0.5 text-sm font-medium text-neutral-950 hover:underline',
           'data-[focus]:rounded-sm data-[focus]:outline-2 data-[focus]:outline-offset-2 data-[focus]:outline-neutral-400',
+          '[&>[data-slot=icon]]:size-4',
           className
         )}
         {...props}
