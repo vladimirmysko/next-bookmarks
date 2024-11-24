@@ -13,17 +13,17 @@ import { InputGroup, Input } from '@/components/Input';
 import { Button } from '@/components/Button';
 import { Error } from '@/components/Error';
 
-import { RegisterActionState, registerAction } from './actions';
+import { SignInActionState, signInAction } from './actions';
 
-export function RegisterForm({
+export function SignInForm({
   className,
   ...props
 }: Omit<
   React.DetailedHTMLProps<React.FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>,
   'children' | 'action'
 >) {
-  const initialState: RegisterActionState = {};
-  const [state, formAction, isPending] = useActionState(registerAction, initialState);
+  const initialState: SignInActionState = {};
+  const [state, formAction, isPending] = useActionState(signInAction, initialState);
 
   const [username, setUsername] = useQueryState('username', {
     defaultValue: '',
@@ -39,9 +39,9 @@ export function RegisterForm({
       <DecorativeBorders />
 
       <div className="flex flex-col items-stretch gap-1">
-        <h1 className="text-xl font-semibold text-neutral-950">Register</h1>
+        <h1 className="text-xl font-semibold text-neutral-950">Sign in</h1>
         <p className="text-sm text-neutral-500 [&_a]:inline-block">
-          Already have an account? <Link href="/sign-in">Sign in.</Link>
+          Don't have an account? <Link href="/register">Register.</Link>
         </p>
       </div>
 
@@ -69,18 +69,10 @@ export function RegisterForm({
           </InputGroup>
           {state?.errors?.password ? <Error>{state.errors.password[0]}</Error> : null}
         </Field>
-        <Field>
-          <Label>Confirm password</Label>
-          <InputGroup>
-            <LockClosedIcon />
-            <Input name="confirmPassword" type="password" placeholder="••••••••" required />
-          </InputGroup>
-          {state?.errors?.confirmPassword ? <Error>{state.errors.confirmPassword[0]}</Error> : null}
-        </Field>
       </div>
 
       <Button type="submit" disabled={isPending}>
-        {isPending ? 'Registering...' : 'Register'}
+        {isPending ? 'Signing in...' : 'Sign in'}
       </Button>
     </form>
   );
