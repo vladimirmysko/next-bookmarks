@@ -1,4 +1,6 @@
 import type { Config } from 'tailwindcss';
+
+import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 
 export default {
@@ -8,10 +10,18 @@ export default {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    letterSpacing: {
+      tightest: '-0.04em',
+      tighter: '-0.02em',
+      tight: '-0.01em',
+      normal: '0',
+      wide: '0.01em',
+      wider: '0.02em',
+      widest: '0.04em',
+    },
     extend: {
-      colors: {
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
+      fontFamily: {
+        sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
       },
     },
   },
