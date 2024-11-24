@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  username     String   @unique
+  passwordHash String   @map("password_hash")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  groups       Group[]
+
+  @@map("users")
+}
+
+model Group {
+  id        Int        @id @default(autoincrement())
+  name      String
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+  bookmarks Bookmark[]
+  user      User       @relation(fields: [userId], references: [id])
+  userId    String     @map("user_id")
+
+  @@unique([name, userId])
+  @@map("groups")
+}
+
+model Bookmark {
+  id        Int      @id @default(autoincrement())
+  title     String
+  url       String
+  favicon   String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  group     Group?   @relation(fields: [groupId], references: [id])
+  groupId   Int?     @map("group_id")
+
+  @@unique([url, groupId])
+  @@map("bookmarks")
+}
