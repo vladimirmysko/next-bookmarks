@@ -15,7 +15,7 @@ export default async function HomePage() {
   }
 
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center sm:bg-neutral-50">
+    <div className="flex min-h-screen flex-col items-center justify-center sm:bg-neutral-50">
       <main className="relative flex w-full max-w-xl flex-col items-stretch gap-8 bg-white px-4 py-6 sm:px-6">
         <DecorativeBorders />
 
