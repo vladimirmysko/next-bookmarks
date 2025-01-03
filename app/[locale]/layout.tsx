@@ -1,15 +1,17 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+
+import { Inter } from 'next/font/google'
 import { getScopedI18n } from '@/locales/server'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
+import { Theme } from '@radix-ui/themes'
+import { ThemeProvider } from 'next-themes'
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const inter = Inter({
+  subsets: ['latin', 'cyrillic'],
+  display: 'swap',
+  variable: '--font-inter',
+  weight: 'variable',
+  axes: ['opsz'],
 })
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -31,12 +33,31 @@ export default async function LocaleLayout({
   const { locale } = await params
 
   return (
-    <html lang={locale} style={{ scrollBehavior: 'smooth' }}>
+    <html
+      lang={locale}
+      style={{ scrollBehavior: 'smooth' }}
+      suppressHydrationWarning
+    >
       <body
-        className={`${geistSans.variable} ${geistMono.variable}`}
+        className={`${inter.variable}`}
         style={{ textRendering: 'optimizeLegibility' }}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Theme
+            accentColor="gray"
+            grayColor="gray"
+            radius="medium"
+            scaling="100%"
+            panelBackground="solid"
+          >
+            {children}
+          </Theme>
+        </ThemeProvider>
       </body>
     </html>
   )
